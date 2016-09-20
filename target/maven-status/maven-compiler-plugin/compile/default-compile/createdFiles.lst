@@ -1,0 +1,9 @@
+com\niit\collaborationbackend\config\ApplicationContextConfig.class
+com\niit\collaborationbackend\model\Event.class
+com\niit\collaborationbackend\model\Forum.class
+com\niit\collaborationbackend\model\Blog.class
+com\niit\collaborationbackend\model\Placement.class
+com\niit\collaborationbackend\model\User.class
+com\niit\collaborationbackend\config\AppInitializer.class
+com\niit\collaborationbackend\dao\UserDAO.class
+com\niit\collaborationbackend\dao\UserDAOImpl.class
