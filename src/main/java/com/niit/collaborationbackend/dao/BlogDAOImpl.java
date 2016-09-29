@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationbackend.model.Blog;
+
 @Repository("BlogDAO")
 public class BlogDAOImpl implements BlogDAO {
 
@@ -22,23 +23,26 @@ public class BlogDAOImpl implements BlogDAO {
 		super();
 		this.sessionFactory = sessionFactory;
 	}
+	
 	@Transactional
-	public void addBlog(Blog u) {
+	public void addBlog(Blog blog) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(u);
+		session.save(blog);
 		tx.commit();
 		session.close();
 	}
+	
 	@Transactional
 	public Blog getBlogByBlogId(int id)
 		{
 			Session session = sessionFactory.openSession();		
 //			System.out.print(id);
-			Blog u = (Blog) session.load(Blog.class, new Integer(id));
+			Blog b = (Blog) session.load(Blog.class, new Integer(id));
 			session.close();
-			return u;
+			return b;
 		}
+	
 	@Transactional
 		 public List<Blog> getAllBlogs() {
 		        Session session = sessionFactory.openSession();
@@ -57,7 +61,5 @@ public class BlogDAOImpl implements BlogDAO {
 
 		        return (Blog) query.uniqueResult();
 		    }
-
-
 	}		
 

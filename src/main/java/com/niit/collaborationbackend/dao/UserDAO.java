@@ -1,7 +1,10 @@
 package com.niit.collaborationbackend.dao;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.niit.collaborationbackend.model.User;
+@Repository("userDAO")
 public interface UserDAO {
 	
 		public void addUser(User u);

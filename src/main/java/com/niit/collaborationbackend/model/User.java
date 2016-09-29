@@ -1,15 +1,18 @@
 package com.niit.collaborationbackend.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -23,20 +26,20 @@ public class User {
 //	@OneToOne(mappedBy="UserId" , fetch=FetchType.EAGER)
 	private int userId;
 	
-	@NotEmpty(message = "Name should not be empty")
+//	@NotEmpty(message = "Name should not be empty")
 	@Column(name = " name")
 	private String name;
 	
-	@NotEmpty(message = "User name should not be empty")
+//	@NotEmpty(message = "User name should not be empty")
 	@Column(name = "username")
 	private String username;
 	
-	@NotEmpty(message = "password should not be empty")
-	@Size(min = 6, max = 15)
+//	@NotEmpty(message = "password should not be empty")
+//	@Size(min = 6, max = 15)
 	@Column(name = "password")
 	private String password;
 	
-	@NotEmpty(message = "address should not be empty")
+//	@NotEmpty(message = "address should not be empty")
 	@Column(name = "address")
 	private String address;
 	
@@ -44,20 +47,30 @@ public class User {
 	private String gender;
 	
 	@Column(name = "email" ,unique=true)
-	@NotEmpty(message = "Email address should not be empty")
-	@Email(message = "Enter Valid Email address")
+//	@NotEmpty(message = "Email address should not be empty")
+//	@Email(message = "Enter Valid Email address")
 	private String email;
 	
 	@Column(name = "contact")
-	@NotEmpty
+//	@NotEmpty
 	private String contact;
 	
 	@Column(name="DOB")
-	@NotEmpty
+//	@NotEmpty
 	private String dob;
+
+	@Column(name="Enabled")
+	boolean enabled =true;
 	
+	@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
+	private List<Blog> blog;
+	@ManyToMany()
 	public String getDob() {
 		return dob;
+	}
+
+	public void setBlog(List<Blog> blog) {
+		this.blog = blog;
 	}
 
 	public void setDob(String dob) {
@@ -128,8 +141,6 @@ public class User {
 		this.contact = contact;
 	}
 
-	@Column(name="Enabled")
-	boolean enabled =true;
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -142,3 +153,4 @@ public class User {
 		return userId + " " + name ;
 	}
 	}
+// 

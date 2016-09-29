@@ -1,18 +1,18 @@
 package com.niit.collaborationbackend.dao;
 
-
 import java.util.List;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationbackend.model.User;
-@Repository("userDAO")
+//@Repository("userDAOImpl")
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
@@ -49,7 +49,8 @@ public class UserDAOImpl implements UserDAO {
 		        return usersDetail;
 		    }
 
-		    public User getUserByUsername (String username) {
+		    @SuppressWarnings("deprecation")
+			public User getUserByUsername (String username) {
 		        Session session = sessionFactory.openSession();
 		        
 		        Query query = session.createQuery("from User where username = ?");
@@ -57,7 +58,6 @@ public class UserDAOImpl implements UserDAO {
 
 		        return (User) query.uniqueResult();
 		    }
-
-
+		
 	}		
 
