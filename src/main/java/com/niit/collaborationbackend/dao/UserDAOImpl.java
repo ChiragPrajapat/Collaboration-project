@@ -33,10 +33,11 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public User getUserByUserId(int id)
 		{
-			Session session = sessionFactory.openSession();		
+			Session session = sessionFactory.getCurrentSession();		
 //			System.out.print(id);
 			User u = (User) session.load(User.class, new Integer(id));
-			session.close();
+			System.out.println("get user by id :" + u);
+			//session.close();
 			return u;
 		}
 	@Transactional

@@ -35,9 +35,9 @@ private String b_date;
 
 private String b_time;
 
-@ManyToOne(fetch = FetchType.EAGER)
-@JoinColumn(name ="userId")
-private User user;
+//@ManyToOne(fetch = FetchType.EAGER)
+//@JoinColumn(name ="userId")
+//private User user;
 
 @Transient
 private MultipartFile image;

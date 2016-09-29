@@ -25,11 +25,11 @@ import com.niit.collaborationbackend.model.Blog;
 import com.niit.collaborationbackend.model.User;
 
 @Configuration
-@ComponentScan(basePackages = { "org.example.springproject" }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
+//@ComponentScan(basePackages = { "org.example.springproject" }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
 
 @ComponentScan("com.niit.collaborationbackend")
-//@EnableTransactionManagement
-//@EnableWebMvc
+@EnableTransactionManagement
+@EnableWebMvc
 public class ApplicationContextConfig  {
 	
     @Bean(name = "dataSource")

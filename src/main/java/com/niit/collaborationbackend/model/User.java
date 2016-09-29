@@ -62,17 +62,16 @@ public class User {
 	@Column(name="Enabled")
 	boolean enabled =true;
 	
-	@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
-	private List<Blog> blog;
-	@ManyToMany()
+//	@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
+//	private List<Blog> blog;
 	public String getDob() {
 		return dob;
 	}
-
-	public void setBlog(List<Blog> blog) {
-		this.blog = blog;
-	}
-
+//
+//	public void setBlog(List<Blog> blog) {
+//		this.blog = blog;
+//	}
+//
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
@@ -150,7 +149,7 @@ public class User {
 	}
 
 	public String toString() {
-		return userId + " " + name ;
+		return String.format("{userId:%s,name:%s}",userId,name);	
 	}
 	}
 // 

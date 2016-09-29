@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.collaborationbackend.dao.UserDAO;
 import com.niit.collaborationbackend.model.User;
 
-//@RestController
+@RestController
 public class UserRestController {
 @Autowired
 private UserDAO userDAO;
 
-@GetMapping("/users/")
+@GetMapping("/users")
 public List<User> getUsers()
 {
 return userDAO.getAllUsers();	
@@ -34,7 +34,8 @@ if (user == null)
 {
 	return new ResponseEntity("No user found for id " + id, HttpStatus.NOT_FOUND);
 }
-return new ResponseEntity(user, HttpStatus.OK);
+System.out.println(user);
+return new ResponseEntity(user.toString(), HttpStatus.OK);
 }
  
 }
