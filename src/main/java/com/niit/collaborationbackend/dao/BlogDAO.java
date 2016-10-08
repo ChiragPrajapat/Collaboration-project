@@ -8,4 +8,5 @@ public interface BlogDAO {
 		public Blog getBlogByBlogId(int id);
 		 public List<Blog> getAllBlogs();
 		 public Blog getBlogByBlogname (String Title);
+		 public void DeleteBlog(Blog blog);
 	}

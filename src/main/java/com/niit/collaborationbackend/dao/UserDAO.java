@@ -11,4 +11,6 @@ public interface UserDAO {
 		public User getUserByUserId(int id);
 		 public List<User> getAllUsers();
 		 public User getUserByUsername (String username);
-	}
+		 public void deleteUser(User user);
+		 public User updateUser(int id ,User user);
+}

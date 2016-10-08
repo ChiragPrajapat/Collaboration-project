@@ -1,5 +1,12 @@
+<!DOCTYPE html>
 <html>
-<body>
-<h2>Hello World!</h2>
+<head>
+<meta charset="UTF-8">
+<title>welcome</title>
+
+Hello Chirag,
+your backend project is running...!!!
+
+
 </body>
 </html>

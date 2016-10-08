@@ -9,13 +9,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.dao.BlogDAOImpl;
@@ -30,7 +30,7 @@ import com.niit.collaborationbackend.model.User;
 @ComponentScan("com.niit.collaborationbackend")
 @EnableTransactionManagement
 @EnableWebMvc
-public class ApplicationContextConfig  {
+public class ApplicationContextConfig extends WebMvcConfigurerAdapter {
 	
     @Bean(name = "dataSource")
     public DataSource getOracleDataSource() {
@@ -82,6 +82,10 @@ public class ApplicationContextConfig  {
 //public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configure){
 //	configure.enable();
 //}
+	@Override
+	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+	    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	}
 
 	@Autowired
     @Bean(name = "userDAO")

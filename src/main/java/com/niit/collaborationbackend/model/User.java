@@ -149,7 +149,7 @@ public class User {
 	}
 
 	public String toString() {
-		return String.format("{userId:%s,name:%s}",userId,name);	
+		return String.format("{userId:%s,name:%s,username:%s, address:%s}",userId,name,username,address);	
 	}
 	}
 // 

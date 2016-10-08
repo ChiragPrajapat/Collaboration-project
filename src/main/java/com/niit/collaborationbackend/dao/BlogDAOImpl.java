@@ -1,6 +1,5 @@
 package com.niit.collaborationbackend.dao;
 
-
 import java.util.List;
 
 import org.hibernate.Query;
@@ -23,7 +22,7 @@ public class BlogDAOImpl implements BlogDAO {
 		super();
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Transactional
 	public void addBlog(Blog blog) {
 		Session session = this.sessionFactory.openSession();
@@ -32,34 +31,40 @@ public class BlogDAOImpl implements BlogDAO {
 		tx.commit();
 		session.close();
 	}
-	
+
 	@Transactional
-	public Blog getBlogByBlogId(int id)
-		{
-			Session session = sessionFactory.openSession();		
-//			System.out.print(id);
-			Blog b = (Blog) session.load(Blog.class, new Integer(id));
-			session.close();
-			return b;
-		}
-	
+	public Blog getBlogByBlogId(int id) {
+		Session session = sessionFactory.openSession();
+		// System.out.print(id);
+		Blog b = (Blog) session.load(Blog.class, new Integer(id));
+		session.close();
+		return b;
+	}
+
 	@Transactional
-		 public List<Blog> getAllBlogs() {
-		        Session session = sessionFactory.openSession();
-		        Query query = session.createQuery("from Blog");
-		        @SuppressWarnings("unchecked")
-				List<Blog> BlogsDetail = query.list();
+	public List<Blog> getAllBlogs() {
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Blog");
+		@SuppressWarnings("unchecked")
+		List<Blog> BlogsDetail = query.list();
 
-		        return BlogsDetail;
-		    }
+		return BlogsDetail;
+	}
 
-		    public Blog getBlogByBlogname (String Title) {
-		        Session session = sessionFactory.openSession();
-		        
-		        Query query = session.createQuery("from Blog where Title = ?");
-		        query.setString(0, Title);
+	@Transactional
+	public Blog getBlogByBlogname(String Title) {
+		Session session = sessionFactory.openSession();
 
-		        return (Blog) query.uniqueResult();
-		    }
-	}		
+		Query query = session.createQuery("from Blog where Title = ?");
+		query.setString(0, Title);
 
+		return (Blog) query.uniqueResult();
+	}
+
+	@Transactional
+	public void DeleteBlog(Blog blog) {
+		Session session = sessionFactory.openSession();
+		session.delete(blog);
+		session.close();
+	}
+}
