@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.model.Blog;
+import com.niit.collaborationbackend.model.User;
 
 @RestController
 public class BlogController {
@@ -32,7 +33,7 @@ return new ResponseEntity(blogDAO.getAllBlogs(),HttpStatus.OK);
 
 
 @GetMapping("blog/{id}")
-public ResponseEntity<?> getBlog(@PathVariable("id") int id)
+public ResponseEntity<?> getBlog(@PathVariable("b_id") int id)
 {	
 Blog blog = blogDAO.getBlogByBlogId(id);
 if (blog == null)
@@ -45,22 +46,14 @@ return new ResponseEntity(blog.toString(), HttpStatus.OK);
 
 
 
-@GetMapping("blog/create")
-public ResponseEntity<?> createBlog()
-{
-	return new ResponseEntity(HttpStatus.OK);
-	}
-
-
-@PostMapping("blog/create")
+@PostMapping(value="blog/create" ,consumes="application/json",produces="application/json")
 public ResponseEntity<?> createBlog(@RequestBody  Blog blog)
 {
-blogDAO.addBlog(blog);
-System.out.println("blog added : " + blog );
-return new ResponseEntity(blog,HttpStatus.OK);
-}
+	blogDAO.addBlog(blog);
 
-
+	System.out.println("blog added : " + blog );
+	return new ResponseEntity(HttpStatus.OK);
+	}
 
 @DeleteMapping("blog/delete/{id}")
 public ResponseEntity<?> deleteBlog(@PathVariable("id") int id,  @RequestBody Blog blog)

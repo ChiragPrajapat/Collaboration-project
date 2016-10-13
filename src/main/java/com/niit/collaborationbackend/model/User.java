@@ -15,10 +15,12 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
 @Entity
 @Component
 @Table(name="Member")
-public class User {
+public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,54 +29,49 @@ public class User {
 	private int userId;
 	
 //	@NotEmpty(message = "Name should not be empty")
-	@Column(name = " name")
-	private String name;
+	@Column(name = "u_name")
+	private String u_name;
 	
 //	@NotEmpty(message = "User name should not be empty")
-	@Column(name = "username")
-	private String username;
+	@Column(name = "u_username")
+	private String u_username;
 	
 //	@NotEmpty(message = "password should not be empty")
 //	@Size(min = 6, max = 15)
-	@Column(name = "password")
-	private String password;
+	@Column(name = "u_password")
+	private String u_password;
 	
 //	@NotEmpty(message = "address should not be empty")
-	@Column(name = "address")
-	private String address;
+	@Column(name = "u_address")
+	private String u_address;
 	
-	@Column(name = "gender")
-	private String gender;
+	@Column(name = "u_gender")
+	private String u_gender;
 	
-	@Column(name = "email" ,unique=true)
+	@Column(name = "u_email" ,unique=true)
 //	@NotEmpty(message = "Email address should not be empty")
 //	@Email(message = "Enter Valid Email address")
-	private String email;
+	private String u_email;
 	
-	@Column(name = "contact")
+	@Column(name = "u_contact")
 //	@NotEmpty
-	private String contact;
+	private String u_contact;
 	
-	@Column(name="DOB")
+	@Column(name="u_DOB")
 //	@NotEmpty
-	private String dob;
+	private String u_dob;
 
 	@Column(name="Enabled")
 	boolean enabled =true;
 	
 //	@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
 //	private List<Blog> blog;
-	public String getDob() {
-		return dob;
-	}
-//
+	
 //	public void setBlog(List<Blog> blog) {
 //		this.blog = blog;
 //	}
 //
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
+	
 
 	public int getUserId() {
 		return userId;
@@ -84,60 +81,71 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	
+
+
+	public String getU_name() {
+		return u_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getU_username() {
+		return u_username;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setU_username(String u_username) {
+		this.u_username = u_username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getU_password() {
+		return u_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setU_password(String u_password) {
+		this.u_password = u_password;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getU_address() {
+		return u_address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setU_address(String u_address) {
+		this.u_address = u_address;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getU_gender() {
+		return u_gender;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setU_gender(String u_gender) {
+		this.u_gender = u_gender;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getU_email() {
+		return u_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setU_email(String u_email) {
+		this.u_email = u_email;
 	}
 
-	public String getContact() {
-		return contact;
+	public String getU_contact() {
+		return u_contact;
 	}
 
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setU_contact(String u_contact) {
+		this.u_contact = u_contact;
+	}
+
+	public String getU_dob() {
+		return u_dob;
+	}
+
+	public void setU_dob(String u_dob) {
+		this.u_dob = u_dob;
 	}
 
 	public boolean isEnabled() {
@@ -149,7 +157,7 @@ public class User {
 	}
 
 	public String toString() {
-		return String.format("{userId:%s,name:%s,username:%s, address:%s}",userId,name,username,address);	
+		return String.format("{userId:%s,u_name:%s,u_username:%s,u_password:%s, u_address:%s,u_gender:%s,u_email:%s,u_contact:%s,enabled:%s}",userId,u_name,u_username,u_password,u_address,u_gender,u_email,u_contact,enabled);	
 	}
 	}
 // 

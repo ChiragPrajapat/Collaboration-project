@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Component
-@Table(name="blog")
+@Table(name="c_blog")
 public class Blog {
 
 @Id
@@ -39,7 +39,7 @@ private String b_time;
 //private User user;
 
 @Transient
-private MultipartFile image;
+private MultipartFile b_image;
 
 public int getB_id() {
 	return b_id;
@@ -72,10 +72,13 @@ public void setB_time(String b_time) {
 	this.b_time = b_time;
 }
 
-public MultipartFile getImage() {
-	return image;
+public MultipartFile getB_image() {
+	return b_image;
 }
-public void setImage(MultipartFile image) {
-	this.image = image;
+public void setB_image(MultipartFile image) {
+	this.b_image = image;
+}
+public String toString() {
+	return String.format("{b_id:%s,b_title:%s,b_content:%s,b_date:%s,b_time:%s,b_image:%s}",b_id,b_title,b_content,b_date,b_time,b_image);	
 }
 }

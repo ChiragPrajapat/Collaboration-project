@@ -49,39 +49,35 @@ return new ResponseEntity(user.toString(), HttpStatus.OK);
 
 
 @RequestMapping(value="user/create", method=RequestMethod.POST,consumes="application/json",produces="application/json")
-public ResponseEntity<?> createUser(@RequestBody  User userdata)
+public ResponseEntity<?> createUser(@RequestBody  User user)
 {
-userDAO.addUser(userdata);
-System.out.println("user added : " + userdata);
+userDAO.addUser(user);
+System.out.println("user added : " + user);
 return new ResponseEntity("hi", HttpStatus.OK);
 }
 
-@GetMapping("user/edit/{id}")
-public ResponseEntity<?> deleteUser()
+
+
+
+@RequestMapping(value="user/delete",method=RequestMethod.DELETE, consumes="application/json",produces="application/json")
+public ResponseEntity<?> deleteUser(@RequestBody int userId,  @RequestBody User user)
 {
-	System.out.println("user edit page");
-	return new ResponseEntity("EDIT", HttpStatus.OK);
-	}
-@DeleteMapping("user/delete/{id}")
-public ResponseEntity<?> deleteUser(@PathVariable("id") int id,  @RequestBody User user)
-{
-	user = userDAO.getUserByUserId(id);
-	System.out.println("delete mapping with id :" + id);
+	user = userDAO.getUserByUserId(userId);
+	System.out.println("delete mapping with id :" + userId);
 	userDAO.deleteUser(user);
 	System.out.println("user deleted : " + user );
-	return new ResponseEntity("DELETE", HttpStatus.OK);
+	return new ResponseEntity("DELETED", HttpStatus.OK);
 }
 
 
-
-@PutMapping("user/edit/{id}")
-public ResponseEntity<?> updateUser(@PathVariable int id ,@RequestBody User user)
+@RequestMapping(value="user/edit" ,method={RequestMethod.PUT,RequestMethod.GET},consumes="application/json",produces="application/json")
+public ResponseEntity<?> updateUser(@RequestBody int userid,@RequestBody User user)
 {
 	if ( user == null)
 	{
-		return new ResponseEntity("No user found for this id :" + id,HttpStatus.NOT_FOUND);
+		return new ResponseEntity("No user found for this id :" + userid,HttpStatus.NOT_FOUND);
 	}
-	user = userDAO.updateUser(id, user);
+	user = userDAO.updateUser(userid, user);
 return new ResponseEntity(user , HttpStatus.OK);	
 }
 }

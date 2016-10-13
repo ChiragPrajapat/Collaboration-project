@@ -25,7 +25,6 @@ import com.niit.collaborationbackend.model.Blog;
 import com.niit.collaborationbackend.model.User;
 
 @Configuration
-//@ComponentScan(basePackages = { "org.example.springproject" }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
 
 @ComponentScan("com.niit.collaborationbackend")
 @EnableTransactionManagement
@@ -34,19 +33,12 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter {
 	
     @Bean(name = "dataSource")
     public DataSource getOracleDataSource() {
-    //	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    
     	BasicDataSource dataSource= new BasicDataSource();
     	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
     	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
     	dataSource.setUsername("chiragdb");
     	dataSource.setPassword("password");
-//    	Properties properties = new Properties();
-//    	properties.setProperty("hibernate.hbm2ddl.auto","update");
-//    	properties.setProperty("hibernate.show_sql", "true");
-//    	properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-//    	properties.setProperty("hibernate.format_sql","true");
-////    	dataSource.setConnectionProperties(properties);
-//  	dataSource.set(getHibernateProperties());
     	return dataSource;
     }
     private Properties getHibernateProperties()
@@ -77,11 +69,7 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter {
 		return transactionManager;
 	}
 	
-//@Autowired
-//@Bean(name="defaultServletHandlerMapping")
-//public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configure){
-//	configure.enable();
-//}
+
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 	    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");

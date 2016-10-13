@@ -12,15 +12,15 @@ public class UserTest {
 		mycontext.refresh();
 		UserDAO userdao = (UserDAO) mycontext.getBean("userDAO");
 		User user = (User) mycontext.getBean("user");
-		user.setName("John kennedy");
-		user.setAddress("NIIT,second floor,bhandarkar bhavan, borivali west, US");
-		user.setDob("31/03/1978");
-		user.setGender("M");
-		user.setContact("6523959144");
-		user.setEmail("chiragjohn@gmail.com");
+		user.setU_name("John kennedy");
+		user.setU_address("NIIT,second floor,bhandarkar bhavan, borivali west, US");
+		user.setU_dob("31/03/1978");
+		user.setU_gender("M");
+		user.setU_contact("6523959144");
+		user.setU_email("chiragjohn@gmail.com");
 		user.setEnabled(true);
-		user.setUsername("john");
-		user.setPassword("password");
+		user.setU_username("john");
+		user.setU_password("password");
 		
 		userdao.addUser(user);
 		System.out.println(userdao.getAllUsers());

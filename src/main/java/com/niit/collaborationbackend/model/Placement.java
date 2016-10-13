@@ -1,69 +1,77 @@
 package com.niit.collaborationbackend.model;
 
-public class Placement {
-private int id;
-private String company;
-private String post;
-private String location;
-private String description;
-private String skils;
-private String date;
-private String time;
-private String salary;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-public int getId() {
-	return id;
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+@Table(name="c_placement")
+public class Placement {
+private int p_id;
+private String p_company;
+private String p_post;
+private String p_location;
+private String p_description;
+private String p_skil_set;
+private String p_date;
+private String p_time;
+private int p_salary;
+public int getP_id() {
+	return p_id;
 }
-public void setId(int id) {
-	this.id = id;
+public void setP_id(int p_id) {
+	this.p_id = p_id;
 }
-public String getCompany() {
-	return company;
+public String getP_company() {
+	return p_company;
 }
-public void setCompany(String company) {
-	this.company = company;
+public void setP_company(String p_company) {
+	this.p_company = p_company;
 }
-public String getPost() {
-	return post;
+public String getP_post() {
+	return p_post;
 }
-public void setPost(String post) {
-	this.post = post;
+public void setP_post(String p_post) {
+	this.p_post = p_post;
 }
-public String getLocation() {
-	return location;
+public String getP_location() {
+	return p_location;
 }
-public void setLocation(String location) {
-	this.location = location;
+public void setP_location(String p_location) {
+	this.p_location = p_location;
 }
-public String getDescription() {
-	return description;
+public String getP_description() {
+	return p_description;
 }
-public void setDescription(String description) {
-	this.description = description;
+public void setP_description(String p_description) {
+	this.p_description = p_description;
 }
-public String getSkils() {
-	return skils;
+public String getP_skil_set() {
+	return p_skil_set;
 }
-public void setSkils(String skils) {
-	this.skils = skils;
+public void setP_skil_set(String p_skil_set) {
+	this.p_skil_set = p_skil_set;
 }
-public String getDate() {
-	return date;
+public String getP_date() {
+	return p_date;
 }
-public void setDate(String date) {
-	this.date = date;
+public void setP_date(String p_date) {
+	this.p_date = p_date;
 }
-public String getTime() {
-	return time;
+public String getP_time() {
+	return p_time;
 }
-public void setTime(String time) {
-	this.time = time;
+public void setP_time(String p_time) {
+	this.p_time = p_time;
 }
-public String getSalary() {
-	return salary;
+public int getP_salary() {
+	return p_salary;
 }
-public void setSalary(String salary) {
-	this.salary = salary;
+public void setP_salary(int p_salary) {
+	this.p_salary = p_salary;
 }
+
 
 }
