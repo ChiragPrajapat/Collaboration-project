@@ -19,9 +19,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.dao.BlogDAOImpl;
+import com.niit.collaborationbackend.dao.EventDAO;
+import com.niit.collaborationbackend.dao.EventDAOImpl;
+import com.niit.collaborationbackend.dao.PlacementDAO;
+import com.niit.collaborationbackend.dao.PlacementDAOImpl;
 import com.niit.collaborationbackend.dao.UserDAO;
 import com.niit.collaborationbackend.dao.UserDAOImpl;
 import com.niit.collaborationbackend.model.Blog;
+import com.niit.collaborationbackend.model.Event;
+import com.niit.collaborationbackend.model.Placement;
 import com.niit.collaborationbackend.model.User;
 
 @Configuration
@@ -30,37 +36,39 @@ import com.niit.collaborationbackend.model.User;
 @EnableTransactionManagement
 @EnableWebMvc
 public class ApplicationContextConfig extends WebMvcConfigurerAdapter {
-	
-    @Bean(name = "dataSource")
-    public DataSource getOracleDataSource() {
-    
-    	BasicDataSource dataSource= new BasicDataSource();
-    	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-    	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-    	dataSource.setUsername("chiragdb");
-    	dataSource.setPassword("password");
-    	return dataSource;
-    }
-    private Properties getHibernateProperties()
-    {
-    	Properties properties = new Properties();
-    	properties.setProperty("hibernate.hbm2ddl.auto","update");
-    	properties.setProperty("hibernate.show_sql", "true");
-    	properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-    	properties.setProperty("hibernate.format_sql","true");
-    	return properties;
-    }
 
-    @Autowired
-    @Bean(name = "sessionFactory")
-    public SessionFactory getSessionFactory(DataSource dataSource) {
-    	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-    	sessionBuilder.addProperties(getHibernateProperties());
-    	sessionBuilder.addAnnotatedClass(User.class);
-    	sessionBuilder.addAnnotatedClass(Blog.class);
-    	return sessionBuilder.buildSessionFactory();
-    }
-    
+	@Bean(name = "dataSource")
+	public DataSource getOracleDataSource() {
+
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		dataSource.setUsername("chiragdb");
+		dataSource.setPassword("password");
+		return dataSource;
+	}
+
+	private Properties getHibernateProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		properties.setProperty("hibernate.format_sql", "true");
+		return properties;
+	}
+
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		sessionBuilder.addProperties(getHibernateProperties());
+		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(Blog.class);
+		sessionBuilder.addAnnotatedClass(Event.class);
+		sessionBuilder.addAnnotatedClass(Placement.class);
+		return sessionBuilder.buildSessionFactory();
+	}
+
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
@@ -68,22 +76,34 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter {
 
 		return transactionManager;
 	}
-	
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-	    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 	@Autowired
-    @Bean(name = "userDAO")
-	    public UserDAO getUserDAO(SessionFactory sessionFactory) {
-	    	return new UserDAOImpl(sessionFactory);
-	    }
-	
+	@Bean(name = "userDAO")
+	public UserDAO getUserDAO(SessionFactory sessionFactory) {
+		return new UserDAOImpl(sessionFactory);
+	}
+
 	@Autowired
-    @Bean(name = "blogDAO")
-	    public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
-	    	return new BlogDAOImpl(sessionFactory);
-	    }
+	@Bean(name = "blogDAO")
+	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
+		return new BlogDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "eventDAO")
+	public EventDAO getEventDAO(SessionFactory sessionFactory) {
+		return new EventDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "placementDAO")
+	public PlacementDAO getPlacementDAO(SessionFactory sessionFactory) {
+		return new PlacementDAOImpl(sessionFactory);
+	}
+
 }

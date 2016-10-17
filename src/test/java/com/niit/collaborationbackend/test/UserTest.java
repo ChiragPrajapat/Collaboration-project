@@ -12,8 +12,8 @@ public class UserTest {
 		mycontext.refresh();
 		UserDAO userdao = (UserDAO) mycontext.getBean("userDAO");
 		User user = (User) mycontext.getBean("user");
-		user.setU_name("John kennedy");
-		user.setU_address("NIIT,second floor,bhandarkar bhavan, borivali west, US");
+		user.setU_name("natasha");
+		user.setU_address("NIIT,second floor,bhandarkar bhavan,wesa borivali west, US");
 		user.setU_dob("31/03/1978");
 		user.setU_gender("M");
 		user.setU_contact("6523959144");

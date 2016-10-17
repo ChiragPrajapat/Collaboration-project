@@ -59,10 +59,10 @@ return new ResponseEntity("hi", HttpStatus.OK);
 
 
 
-@RequestMapping(value="user/delete",method=RequestMethod.DELETE, consumes="application/json",produces="application/json")
-public ResponseEntity<?> deleteUser(@RequestBody int userId,  @RequestBody User user)
+@RequestMapping(value="user/delete/{userId}",method=RequestMethod.DELETE)
+public ResponseEntity<?> deleteUser(@PathVariable int userId)
 {
-	user = userDAO.getUserByUserId(userId);
+	User user = userDAO.getUserByUserId(userId);
 	System.out.println("delete mapping with id :" + userId);
 	userDAO.deleteUser(user);
 	System.out.println("user deleted : " + user );
@@ -70,14 +70,15 @@ public ResponseEntity<?> deleteUser(@RequestBody int userId,  @RequestBody User 
 }
 
 
-@RequestMapping(value="user/edit" ,method={RequestMethod.PUT,RequestMethod.GET},consumes="application/json",produces="application/json")
-public ResponseEntity<?> updateUser(@RequestBody int userid,@RequestBody User user)
+@RequestMapping(value="user/edit" ,method=RequestMethod.POST,consumes="application/json",produces="application/json")
+public ResponseEntity<?> updateUser(@RequestBody User user)
 {
+	System.out.println("in user edit rest controller with user object :" + user);
 	if ( user == null)
 	{
-		return new ResponseEntity("No user found for this id :" + userid,HttpStatus.NOT_FOUND);
+		return new ResponseEntity("No user found for this id :" + user.getUserId(),HttpStatus.NOT_FOUND);
 	}
-	user = userDAO.updateUser(userid, user);
+	user = userDAO.updateUser(user.getUserId(), user);
 return new ResponseEntity(user , HttpStatus.OK);	
 }
 }

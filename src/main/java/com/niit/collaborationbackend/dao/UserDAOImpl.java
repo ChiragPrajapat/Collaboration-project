@@ -77,10 +77,11 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public User updateUser(int id , User user) {
 		Session session = this.sessionFactory.openSession();
-		User u = (User) session.load(User.class, new Integer(id));
+		
 		Transaction tx = session.beginTransaction();
 		session.update(user);
 		tx.commit();
+		User u = (User) session.load(User.class, new Integer(id));
 //		session.close();
 		// logger.info("Product updated successfully, Product Details="+p);
 		return u;

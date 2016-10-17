@@ -1,5 +1,7 @@
 package com.niit.collaborationbackend.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,10 +16,11 @@ private String p_company;
 private String p_post;
 private String p_location;
 private String p_description;
-private String p_skil_set;
-private String p_date;
-private String p_time;
+private String p_skill_set;
+private Date p_date;
+//private String p_time;
 private int p_salary;
+
 public int getP_id() {
 	return p_id;
 }
@@ -49,29 +52,38 @@ public void setP_description(String p_description) {
 	this.p_description = p_description;
 }
 public String getP_skil_set() {
-	return p_skil_set;
+	return p_skill_set;
 }
 public void setP_skil_set(String p_skil_set) {
-	this.p_skil_set = p_skil_set;
+	this.p_skill_set = p_skil_set;
 }
-public String getP_date() {
-	return p_date;
-}
-public void setP_date(String p_date) {
-	this.p_date = p_date;
-}
-public String getP_time() {
-	return p_time;
-}
-public void setP_time(String p_time) {
-	this.p_time = p_time;
-}
+
+//public String getP_time() {
+//	return p_time;
+//}
+//public void setP_time(String p_time) {
+//	this.p_time = p_time;
+//}
 public int getP_salary() {
 	return p_salary;
+}
+public String getP_skill_set() {
+	return p_skill_set;
+}
+public void setP_skill_set(String p_skill_set) {
+	this.p_skill_set = p_skill_set;
+}
+public Date getP_date() {
+	return p_date;
+}
+public void setP_date(Date p_date) {
+	this.p_date = p_date;
 }
 public void setP_salary(int p_salary) {
 	this.p_salary = p_salary;
 }
-
+public String toString() {
+	return String.format("{p_id:%s,p_company:%s,p_post:%s,p_location:%s,p_description:%s,p_skill_set:%s,p_date:%s,p_salary:%s}",p_id,p_company,p_post,p_location,p_description,p_skill_set,p_date,p_salary);	
+}
 
 }

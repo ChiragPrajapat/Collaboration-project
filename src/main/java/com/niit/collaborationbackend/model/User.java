@@ -64,13 +64,13 @@ public class User{
 	@Column(name="Enabled")
 	boolean enabled =true;
 	
-//	@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
-//	private List<Blog> blog;
+@OneToMany(fetch = FetchType.EAGER ,cascade=CascadeType.ALL , mappedBy = "user")
+private List<Blog> blog;
 	
-//	public void setBlog(List<Blog> blog) {
-//		this.blog = blog;
-//	}
-//
+	public void setBlog(List<Blog> blog) {
+		this.blog = blog;
+	}
+
 	
 
 	public int getUserId() {

@@ -8,4 +8,6 @@ public interface EventDAO {
 		public Event getEventByEventId(int id);
 		 public List<Event> getAllEvents();
 		 public Event getEventByEventname (String title);
+		 public void deleteEvent(Event event);
+		 public Event updateEvent(int id , Event event);
 	}

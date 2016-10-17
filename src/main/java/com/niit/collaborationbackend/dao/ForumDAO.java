@@ -8,4 +8,6 @@ public interface ForumDAO {
 		public Forum getForumByForumId(int id);
 		 public List<Forum> getAllForums();
 		 public Forum getForumByForumname (String Title);
+		 public Forum updateForum(int id , Forum forum);
+		 public void deleteForum(Forum forum);
 	}

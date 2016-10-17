@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+
+
 @Entity
 @Component
 @Table(name="c_event")
@@ -30,11 +32,17 @@ private String e_time;
 @NotEmpty(message="Please describe !!")
 
 private String e_description;
-@ManyToMany
-private User user;
+//@ManyToMany
+//private User user;
 public int getE_id() {
 	return e_id;
 }
+//public User getUser() {
+//	return user;
+//}
+//public void setUser(User user) {
+//	this.user = user;
+//}
 public void setE_id(int e_id) {
 	this.e_id = e_id;
 }
@@ -81,7 +89,6 @@ public void setE_email(String e_email) {
 	this.e_email = e_email;
 }
 @NotEmpty(message="Please provide contact")
-
 private String e_contact;
 @NotEmpty(message="Please provide email")
 

@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.model.Blog;
-import com.niit.collaborationbackend.model.User;
 
 @RestController
 public class BlogController {
@@ -32,10 +32,12 @@ return new ResponseEntity(blogDAO.getAllBlogs(),HttpStatus.OK);
 }
 
 
-@GetMapping("blog/{id}")
+@GetMapping("blog/{b_id}")
 public ResponseEntity<?> getBlog(@PathVariable("b_id") int id)
 {	
 Blog blog = blogDAO.getBlogByBlogId(id);
+
+
 if (blog == null)
 {
 	return new ResponseEntity("No blog found for id " + id, HttpStatus.NOT_FOUND);
@@ -46,35 +48,37 @@ return new ResponseEntity(blog.toString(), HttpStatus.OK);
 
 
 
-@PostMapping(value="blog/create" ,consumes="application/json",produces="application/json")
+@RequestMapping(value="blog/create", method=RequestMethod.POST,consumes="application/json",produces="application/json")
 public ResponseEntity<?> createBlog(@RequestBody  Blog blog)
 {
-	blogDAO.addBlog(blog);
-
-	System.out.println("blog added : " + blog );
-	return new ResponseEntity(HttpStatus.OK);
-	}
-
-@DeleteMapping("blog/delete/{id}")
-public ResponseEntity<?> deleteBlog(@PathVariable("id") int id,  @RequestBody Blog blog)
-{
-	blog = blogDAO.getBlogByBlogId(id);
-	System.out.println("delete mapping with id :" + id);
-	blogDAO.DeleteBlog(blog);
-	System.out.println("blog deleted : " + blog );
-	return new ResponseEntity("DELETE", HttpStatus.OK);
+blogDAO.addBlog(blog);
+System.out.println("blog added : " + blog);
+return new ResponseEntity("hi", HttpStatus.OK);
 }
 
 
 
-@PutMapping("blog/edit/{id}")
-public ResponseEntity<?> updateBlog(@PathVariable int id ,@RequestBody Blog blog)
+
+@RequestMapping(value="blog/delete/{blogId}",method=RequestMethod.DELETE)
+public ResponseEntity<?> deleteBlog(@PathVariable int blogId)
 {
+	Blog blog = blogDAO.getBlogByBlogId(blogId);
+	System.out.println("delete mapping with id :" + blogId);
+	blogDAO.deleteBlog(blog);
+	System.out.println("blog deleted : " + blog );
+	return new ResponseEntity("DELETED", HttpStatus.OK);
+}
+
+
+@RequestMapping(value="blog/edit" ,method=RequestMethod.POST,consumes="application/json",produces="application/json")
+public ResponseEntity<?> updateBlog(@RequestBody Blog blog)
+{
+	System.out.println("in blog edit rest controller with blog object :" + blog);
 	if ( blog == null)
 	{
-		return new ResponseEntity("No blog found for this id :" + id,HttpStatus.NOT_FOUND);
+		return new ResponseEntity("No blog found for this id :" + blog.getB_id(),HttpStatus.NOT_FOUND);
 	}
-//	blog = blogDAO.updateBlog(id, blog);
+	blog = blogDAO.updateBlog(blog.getB_id(), blog);
 return new ResponseEntity(blog , HttpStatus.OK);	
 }
 }

@@ -9,6 +9,8 @@ E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\d
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\dao\UserDAO.java
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\dao\ForumDAOImpl.java
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\config\ApplicationContextConfig.java
+E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\controller\PlacementController.java
+E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\controller\EventController.java
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\model\Placement.java
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\dao\BlogDAOImpl.java
 E:\Workspace1\CollaborationBackEnd\src\main\java\com\niit\collaborationbackend\model\Forum.java
