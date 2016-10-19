@@ -1,5 +1,6 @@
 package com.niit.collaborationbackend.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.model.Blog;
+import com.niit.collaborationbackend.model.User;
 
 //@Repository("blogDAOImpl")
 public class BlogDAOImpl implements BlogDAO {
@@ -27,6 +29,9 @@ public class BlogDAOImpl implements BlogDAO {
 	public void addBlog(Blog b) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		Date date = new Date();
+		b.setB_date(date.getDate());
+		b.setB_time(date.getTime());
 		session.save(b);
 		tx.commit();
 //		session.close();
@@ -80,6 +85,9 @@ public class BlogDAOImpl implements BlogDAO {
 		Session session = this.sessionFactory.openSession();
 		
 		Transaction tx = session.beginTransaction();
+		Date date = new Date();
+		blog.setB_date(date.getDate());
+		blog.setB_time(date.getTime());
 		session.update(blog);
 		tx.commit();
 		Blog b = (Blog) session.load(Blog.class, new Integer(id));

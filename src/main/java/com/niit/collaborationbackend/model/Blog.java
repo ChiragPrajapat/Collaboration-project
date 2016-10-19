@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 @Table(name="c_blog")
 public class Blog {
-
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int b_id;
@@ -30,9 +29,9 @@ private String b_title;
 @NotEmpty(message="write blog")
 private String b_content;
 
-private String b_date;
+private int b_date;
 
-private String b_time;
+private long b_time;
 
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name ="userId")
@@ -59,18 +58,6 @@ public String getB_content() {
 public void setB_content(String b_content) {
 	this.b_content = b_content;
 }
-public String getB_date() {
-	return b_date;
-}
-public void setB_date(String b_date) {
-	this.b_date = b_date;
-}
-public String getB_time() {
-	return b_time;
-}
-public void setB_time(String b_time) {
-	this.b_time = b_time;
-}
 
 public MultipartFile getB_image() {
 	return b_image;
@@ -78,6 +65,26 @@ public MultipartFile getB_image() {
 public void setB_image(MultipartFile image) {
 	this.b_image = image;
 }
+
+public int getB_date() {
+		return b_date;
+	}
+	public void setB_date(int b_date) {
+		this.b_date = b_date;
+	}
+	public long getB_time() {
+		return b_time;
+	}
+	public void setB_time(long b_time) {
+		this.b_time = b_time;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 public String toString() {
 	return String.format("{b_id:%s,b_title:%s,b_content:%s,b_date:%s,b_time:%s,b_image:%s}",b_id,b_title,b_content,b_date,b_time,b_image);	
 }

@@ -8,10 +8,11 @@ import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.model.Event;
 
-//@Repository("eventDAOImpl")
+@Repository("eventDAOImpl")
 public class EventDAOImpl implements EventDAO {
 
 	@Autowired

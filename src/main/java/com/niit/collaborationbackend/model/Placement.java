@@ -3,6 +3,9 @@ package com.niit.collaborationbackend.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Table(name="c_placement")
 public class Placement {
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 private int p_id;
 private String p_company;
 private String p_post;
